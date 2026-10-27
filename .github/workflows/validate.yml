@@ -1,0 +1,55 @@
+name: Validate
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Repository validation
+    if: ${{ github.event.pull_request.draft != true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+
+      - name: Set up Nub
+        uses: nubjs/setup-nub@v0.6.0
+        with:
+          nub-version: 0.9.6
+          node-version-file: .nvmrc
+          cache-dependency-path: nub.lock
+
+      - name: Install dependencies
+        run: nub install --frozen-lockfile
+
+      - name: Typecheck
+        run: nub run typecheck
+
+      - name: Lint
+        run: nub run lint
+
+      - name: Test
+        run: nub run test
+
+      - name: Check formatting
+        run: nub run format
+
+      - name: Lint GitHub Actions workflows
+        uses: reviewdog/action-actionlint@v1
+        with:
+          fail_level: error
+          filter_mode: nofilter

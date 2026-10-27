@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    "nub.lock",
+    "vendor/**",
+    "**/*.md",
+    "**/*.yaml",
+    "**/*.yml"
+  ],
+  "arrowParens": "always",
+  "semi": false
+}

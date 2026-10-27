@@ -1,0 +1,83 @@
+{
+  "name": "oxlint-plugin-solzero",
+  "version": "0.0.0",
+  "description": "SolZero Oxlint rules and shared config, with anti-slop bundled.",
+  "keywords": [
+    "anti-slop",
+    "effect",
+    "oxlint",
+    "oxlint-plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SolZeroAI/oxlint-plugin-solzero.git"
+  },
+  "files": [
+    "dist",
+    "vendor/anti-slop/LICENSE"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./anti-slop": {
+      "types": "./dist/src/anti-slop.d.ts",
+      "default": "./dist/src/anti-slop.js"
+    },
+    "./anti-slop-effect": {
+      "types": "./dist/src/anti-slop-effect.d.ts",
+      "default": "./dist/src/anti-slop-effect.js"
+    },
+    "./config": {
+      "types": "./dist/src/config.d.ts",
+      "default": "./dist/src/config.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsrs --noEmit",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "lint": "nub run build && oxlint",
+    "lint:fix": "nub run build && oxlint --fix",
+    "format": "oxfmt --check .",
+    "format:fix": "oxfmt .",
+    "tegami": "node scripts/tegami.ts",
+    "prepack": "nub run build"
+  },
+  "dependencies": {
+    "@oxlint/plugins": "^1.89.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "oxfmt": "0.74.0",
+    "oxlint": "1.89.0",
+    "tegami": "1.5.0",
+    "tsrs": "0.20.0-ts7.1.0-beta",
+    "typescript": "7.0.2"
+  },
+  "peerDependencies": {
+    "oxlint": "^1.89.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "nub",
+      "version": "0.9.6",
+      "onFail": "warn"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "24.15.0"
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "nub@0.9.6"
+}
