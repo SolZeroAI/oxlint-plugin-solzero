@@ -29,7 +29,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - name: Create release App token
+      - name: Create solzero-bot token
         id: release-token
         uses: actions/create-github-app-token@v3
         with:
