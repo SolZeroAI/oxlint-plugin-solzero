@@ -1,0 +1,11 @@
+core:changelogs:
+  - content: "---\npackages:\n  npm:oxlint-plugin-solzero:\n    type: minor\n---\n\n## First release\n\nOne Oxlint package for every SolZero repository. It replaces the `janus-lint` and\n`s0-lint` workspace packages and the `github:dmmulroy/anti-slop` dependency.\n\n- `oxlint-plugin-solzero` is the `solzero` plugin: the Effect composition rules from\n  `janus-lint` and `s0-lint`, `use-effect-otel`, and `no-colocated-tests`.\n- `oxlint-plugin-solzero/anti-slop` and `oxlint-plugin-solzero/anti-slop-effect` are\n  anti-slop, compiled from the pinned `vendor/anti-slop` submodule.\n- `oxlint-plugin-solzero/config` exports `recommended`, `agentToolIgnorePatterns`, `effectRules()`, and\n  `observabilityRules()` for `oxlint.config.ts`.\n\nMigration from `s0-lint`: `no-effect-ladder`, `no-call-tower`, and `no-return-in-callback`\nwere duplicates of `no-nested-effect-call`, `no-effect-call-in-effect-arg`, and\n`no-return-in-arrow` and are removed. `max-file-lines` is replaced by Oxlint's built-in\n`max-lines`. Repository path allowlists moved out of the rules and into each repository's\nconfig overrides.\n"
+    filename: 2026-10-27-initial-release.md
+    v: 0.0.0
+core:packages:
+  - changelogIds:
+      - 2026-10-27-initial-release.md
+    id: npm:oxlint-plugin-solzero
+    updated: true
+npm:packages:
+  - id: npm:oxlint-plugin-solzero

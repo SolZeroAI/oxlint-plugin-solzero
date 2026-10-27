@@ -1,9 +1,6 @@
----
-packages:
-  "npm:oxlint-plugin-solzero": minor
----
+## oxlint-plugin-solzero@0.1.0
 
-## First release
+### First release
 
 One Oxlint package for every SolZero repository. It replaces the `janus-lint` and
 `s0-lint` workspace packages and the `github:dmmulroy/anti-slop` dependency.
