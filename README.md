@@ -7,7 +7,7 @@ Oxlint rules and one shared config for SolZero repositories. The package contain
 | `oxlint-plugin-solzero`                  | The `solzero` plugin: Effect composition rules, `use-effect-otel`, `no-colocated-tests` |
 | `oxlint-plugin-solzero/anti-slop`        | [anti-slop](https://github.com/dmmulroy/anti-slop), compiled from `vendor/anti-slop` |
 | `oxlint-plugin-solzero/anti-slop-effect` | anti-slop's Effect rules                                                       |
-| `oxlint-plugin-solzero/config`           | `recommended`, `effectRules()`, `observabilityRules()`                         |
+| `oxlint-plugin-solzero/config`           | `recommended`, `agentToolIgnorePatterns`, `effectRules()`, `observabilityRules()`                         |
 
 All entry points are compiled JavaScript, so Oxlint loads them without `tsx`.
 
@@ -22,11 +22,18 @@ nub add -D oxlint oxlint-plugin-solzero
 ```ts
 // oxlint.config.ts
 import { defineConfig } from "oxlint"
-import { effectRules, observabilityRules, recommended } from "oxlint-plugin-solzero/config"
+import {
+  agentToolIgnorePatterns,
+  effectRules,
+  observabilityRules,
+  recommended,
+} from "oxlint-plugin-solzero/config"
 
 export default defineConfig({
   extends: [recommended],
   plugins: ["unicorn", "typescript", "oxc", "react"],
+  // Oxlint does not inherit ignorePatterns through extends, so spread the shared list.
+  ignorePatterns: [...agentToolIgnorePatterns, "dist/**"],
   overrides: [
     // Effect services: flat pipelines, Option over null, tagged errors.
     { files: ["packages/api/src/server/**"], rules: effectRules("error") },
@@ -38,9 +45,9 @@ export default defineConfig({
 })
 ```
 
-`recommended` loads the three plugins, ignores agent tool directories (`.agents/**`,
-`.claude/**`, `.cursor/**`, and similar), and enables `oxc/no-accumulating-spread` plus
-every anti-slop and anti-slop-effect rule as an error. Turn a rule off or down in your own
+`recommended` loads the three plugins and enables `oxc/no-accumulating-spread` plus every
+anti-slop and anti-slop-effect rule as an error. `agentToolIgnorePatterns` lists the agent
+tool directories (`.agents/**`, `.claude/**`, `.cursor/**`, and similar). Turn a rule off or down in your own
 `rules` or `overrides`.
 
 The `solzero` composition rules check only files that import Effect.

@@ -12,7 +12,7 @@ One Oxlint package for every SolZero repository. It replaces the `janus-lint` an
   `janus-lint` and `s0-lint`, `use-effect-otel`, and `no-colocated-tests`.
 - `oxlint-plugin-solzero/anti-slop` and `oxlint-plugin-solzero/anti-slop-effect` are
   anti-slop, compiled from the pinned `vendor/anti-slop` submodule.
-- `oxlint-plugin-solzero/config` exports `recommended`, `effectRules()`, and
+- `oxlint-plugin-solzero/config` exports `recommended`, `agentToolIgnorePatterns`, `effectRules()`, and
   `observabilityRules()` for `oxlint.config.ts`.
 
 Migration from `s0-lint`: `no-effect-ladder`, `no-call-tower`, and `no-return-in-callback`

@@ -16,6 +16,24 @@ function withSeverity(
 }
 
 /**
+ * Agent tool directories (skills, rules, plans). Oxlint does not apply `ignorePatterns` from an
+ * extended config, so spread this into the root config's `ignorePatterns`.
+ */
+export const agentToolIgnorePatterns = [
+  ".agent/**",
+  ".agents/**",
+  ".claude/**",
+  ".codex/**",
+  ".continue/**",
+  ".cursor/**",
+  ".gemini/**",
+  ".opencode/**",
+  ".pi/**",
+  ".roo/**",
+  ".windsurf/**",
+] as const
+
+/**
  * Shared base for every SolZero repository: loads the solzero, anti-slop, and anti-slop-effect
  * plugins and enables every anti-slop rule as an error. A vendored anti-slop update that adds a
  * rule enables it here too.
@@ -25,19 +43,6 @@ export const recommended: OxlintConfig = {
     { name: "solzero", specifier: packageName },
     { name: "anti-slop", specifier: `${packageName}/anti-slop` },
     { name: "anti-slop-effect", specifier: `${packageName}/anti-slop-effect` },
-  ],
-  ignorePatterns: [
-    ".agent/**",
-    ".agents/**",
-    ".claude/**",
-    ".codex/**",
-    ".continue/**",
-    ".cursor/**",
-    ".gemini/**",
-    ".opencode/**",
-    ".pi/**",
-    ".roo/**",
-    ".windsurf/**",
   ],
   rules: {
     "oxc/no-accumulating-spread": "error",
