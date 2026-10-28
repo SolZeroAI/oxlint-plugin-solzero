@@ -1,6 +1,6 @@
 {
   "name": "oxlint-plugin-solzero",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "SolZero Oxlint rules and shared config, with anti-slop bundled.",
   "keywords": [
     "anti-slop",
