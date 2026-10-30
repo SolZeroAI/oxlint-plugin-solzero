@@ -1,4 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>SolZeroAI/renovate-config"]
+  "extends": ["github>SolZeroAI/renovate-config"],
+  "git-submodules": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "A new anti-slop rule becomes an error in every consumer, so each anti-slop update waits for review and a minor Tegami entry.",
+      "matchManagers": ["git-submodules"],
+      "groupName": "anti-slop",
+      "groupSlug": "anti-slop",
+      "schedule": ["at any time"],
+      "automerge": false,
+      "addLabels": ["anti-slop"],
+      "prBodyNotes": [
+        "Before merge: list new or changed anti-slop rules, fix any new violations in the consumers, and add a `minor` `.tegami/` entry that names the new rules."
+      ]
+    }
+  ]
 }
