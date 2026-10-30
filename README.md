@@ -46,9 +46,11 @@ export default defineConfig({
 ```
 
 `recommended` loads the three plugins and enables `oxc/no-accumulating-spread` plus every
-anti-slop and anti-slop-effect rule as an error. `agentToolIgnorePatterns` lists the agent
-tool directories (`.agents/**`, `.claude/**`, `.cursor/**`, and similar). Turn a rule off or down in your own
-`rules` or `overrides`.
+anti-slop and anti-slop-effect rule as an error. It also sets Oxlint's built-in `correctness`
+category to error, because Oxlint runs that category at warn by default. SolZero lint has no
+warning level: run `oxlint --deny-warnings` so that a rule set to warn fails lint. `agentToolIgnorePatterns` lists the agent
+tool directories (`.agents/**`, `.claude/**`, `.cursor/**`, and similar). Turn a rule off for a documented
+reason in your own `rules` or `overrides`.
 
 The `solzero` composition rules check only files that import Effect.
 

@@ -36,9 +36,11 @@ export const agentToolIgnorePatterns = [
 /**
  * Shared base for every SolZero repository: loads the solzero, anti-slop, and anti-slop-effect
  * plugins and enables every anti-slop rule as an error. A vendored anti-slop update that adds a
- * rule enables it here too.
+ * rule enables it here too. Oxlint runs its built-in correctness rules at warn by default; this
+ * config makes them errors, because SolZero lint has no warning level.
  */
 export const recommended: OxlintConfig = {
+  categories: { correctness: "error" },
   jsPlugins: [
     { name: "solzero", specifier: packageName },
     { name: "anti-slop", specifier: `${packageName}/anti-slop` },

@@ -44,7 +44,7 @@
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsrs --noEmit",
     "test": "node --test \"tests/**/*.test.ts\"",
-    "lint": "nub run build && oxlint",
+    "lint": "nub run build && oxlint --deny-warnings",
     "lint:fix": "nub run build && oxlint --fix",
     "format": "oxfmt --check .",
     "format:fix": "oxfmt .",
