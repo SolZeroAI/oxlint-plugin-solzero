@@ -60,6 +60,8 @@ nub run format
 
 Open a pull request as a draft. Keep it a draft while you work. GitHub Actions does not run jobs on a draft pull request.
 
+`nub install` installs a lefthook pre-push hook (`lefthook.yml`) that runs `nub run typecheck`, `nub run lint`, and `nub run format`.
+
 When the work is done, mark the pull request ready for review.
 
 ## Release management
